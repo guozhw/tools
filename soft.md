@@ -9,3 +9,5 @@
 [MobaXterm](https://mobaxterm.mobatek.net/download-home-edition.html)
 [ZOC Terminal Emulator](https://www.emtec.com/zoc/)
 
+# Proxy Client
+[Proxifier](https://www.proxifier.com/download/)
