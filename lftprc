@@ -1,0 +1,92 @@
+alias ls command cls
+alias hostls command ls
+
+# lftp has the following settable variables (you can also use 'set -a' to see all variables and their values):
+# save plain text passwords in ~/.lftp/bookmarks on 'bookmark add' command. Off by default.
+set bmk:save-passwords no
+
+# Enable colors in interactive mode. Used by e.g. directory listings (which
+# use $LS_COLORS).
+set color:use-color true
+
+# directory coloring
+#set color:dir-colors "rs=0:di=02;36:fi=01;32:ln=01;31:*.txt=01;35:*.html=00;35:"
+set color:dir-colors "rs=0:fi=00:di=34:ln=35:ex=01;31:*.mkv=33"
+
+# default cls options (overriden if specified)
+set cmd:cls-default "-1 --reverse --human-readable --sortnocase --size --filesize --classify --sort=date --date"
+
+# The commands in string are executed before lftp exits. 
+set cmd:at-exit "bye"
+
+# Use a colorized prompt. Hostname in bold green, current directory in bold
+# blue.
+set prompt "\[\e[1;32m\]\u@\S\[\e[0m\]:\[\e[1;34m\]\w\[\e[0m\]$ "
+
+# Don't store current directory of each server in ~/.lftp/cwd_history.
+set cmd:save-cwd-history no
+
+# Don't store transfer logs in ~/.lftp/transfer_log.
+set xfer:log no
+
+# a boolean to control whether or not lftp uses remote completion.
+set cmd:remote-completion true
+
+# if true, lftp resolves host name immediately in 'open' command. It is also possible to skip the check for a 
+# single 'open' command if '&' is given, or if ^Z is pressed during the check. 
+#set cmd:verify-host yes
+
+# enable DNS cache. If it is off, lftp resolves host name each time it reconnects.
+set dns:cache-enable yes
+
+# local character set. It is set from current locale initially.
+set file:charset utf-8
+
+#The value is used when 'open' is used with just host name without protocol. Default is 'ftp'.
+set cmd:default-protocol sftp
+
+# use specified shell on server side. Default is /bin/sh. On some systems, /bin/sh exits when doing cd to a 
+# non-existent directory. lftp can handle that but it has to reconnect. Set it to /bin/bash for such systems if bash 
+# is installed. 
+###set /bin/bash
+
+# When false, cache is disabled.
+set cache:enable yes
+
+# Positive cache entries expire in this time interval.
+set cache:expire 1h
+
+# a boolean to control whether or not lftp uses remote completion.
+set cmd:remote-completion yes
+
+# don't log or save history
+set cmd:save-cwd-history no
+set cmd:save-rl-history no
+
+# verify file integrity
+#set xfer:verify yes
+
+# the character set used by sftp server in file names and file listings. Default is empty which means the same as 
+# local. This setting is only used for sftp protocol version prior to 4. Version 4 and later always use UTF-8. 
+set sftp:charset "utf-8"
+
+# set program to use for connecting to remote server. It should support '-l' option for user name, '-p' for port 
+# number. Default is 'ssh -a -x'. You can set it to 'rsh', for example. 
+set sftp:connect-program "ssh -a -x"
+
+# The maximum number of unreplied packets in flight. If round trip time is significant, you should increase this 
+# and size-read/size-write. Default is 16. 
+set sftp:max-packets-in-flight 16
+
+# Block size for reading. Default is 0x8000.
+set sftp:size-read  0x8000
+
+# Block size for writing. Default is 0x8000.
+set sftp:size-write 0x8000
+
+#####
+# Set modeline(s)
+#
+
+# vim: filetype=sh :
+
